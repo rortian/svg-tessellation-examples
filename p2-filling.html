@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>p2</title>
+</head>
+<body>
+    <svg>
+        <defs>
+            <g id="half">
+                <circle cx="250" cy="165" r="40" fill="rgb(250,114,54)" />
+                <circle cx="300" cy="220" r="27" fill="rgb(0,149,159)" />
+                <circle cx="210" cy="100" r="19" fill="rgb(112,199,212)" />
+            </g>
+            <g id="tile">
+                <use xlink:href="#half" />
+                <use xlink:href="#half" transform="rotate(180,300,163.39745)"/>
+            </g>
+        </defs>
+        <g stroke="black" stroke-width="1" fill="none" >
+            <polygon points="450,250 250,250 150,76.7949 350,76.7949" />
+        </g>
+        <g stroke="red" stroke-width="1" fill="none" >
+            <polygon points="350,250 250,250 150,76.7949 250,76.7949" />
+        </g>
+        <use xlink:href="#tile" />
+    </svg>
+</body>
+</html>

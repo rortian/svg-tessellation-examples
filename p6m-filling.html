@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>p6m</title>
+</head>
+<body>
+<svg>
+    <defs>
+        <g id="starter" stroke-width="0" >
+            <circle cx="388" cy="214" r="33" fill="rgb(0,44,67)" />
+            <circle cx="330" cy="230" r="18" fill="rgb(52,123,146)" />
+            <circle cx="295" cy="238" r="9" fill="rgb(0,63,122)" />
+            <circle cx="398" cy="175" r="6" fill="rgb(0,63,122)" />
+            <circle cx="430" cy="240" r="8" fill="rgb(52,123,146)" />
+            <circle cx="275" cy="243" r="5" fill="rgb(0,44,67)" />
+        </g>
+        <g id="with-reflection" >
+            <use xlink:href="#starter" />
+            <use xlink:href="#starter" transform="translate(0,250) matrix(1,0,0,-1,0,0) translate(0,-250)" />
+        </g>
+        <g id="tile">
+            <use xlink:href="#with-reflection" />
+            <use xlink:href="#with-reflection" transform="rotate(60,250,250)" />
+            <use xlink:href="#with-reflection" transform="rotate(120,250,250)" />
+            <use xlink:href="#with-reflection" transform="rotate(180,250,250)" />
+            <use xlink:href="#with-reflection" transform="rotate(240,250,250)" />
+            <use xlink:href="#with-reflection" transform="rotate(300,250,250)" />
+        </g>
+    </defs>
+    <use xlink:href="#tile" />
+    <g stroke="black" stroke-width="1" fill="none" >
+        <polygon points="450,250 350,423.2051 150,423.2051 50,250 150,76.7949 350,76.7949" />
+    </g>
+    <g id="triangle" stroke="red" stroke-width="1" fill="none">
+        <polygon points="450,250 250,250 400,163.39745"  />
+    </g>
+
+</svg>
+</body>
+</html>

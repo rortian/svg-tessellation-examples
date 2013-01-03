@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" xmlns:fractalsvg="http://svg.pseudopattern.com">
+<head>
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js" type="text/javascript" ng:autobind></script>
+    <script type="text/javascript">
+        function makeSVG(tag, attrs) {
+            var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+            for (var k in attrs)
+                el.setAttribute(k, attrs[k]);
+            return el;
+        }
+
+
+    </script>
+    <script type="text/javascript">
+        function LineController($document){
+            this.fun = ['hi']
+            this.doc = $document;
+            console.log(angular.element('<body>'));
+        }
+
+
+        LineController.prototype = {
+            hi:function(){
+                console.log("hi there!");
+            }
+        }
+
+        LineController.$inject = ['$document']
+
+        angular.widget('fractalsvg:trace',function(linkElement){
+            var svg = makeSVG('svg',{version:"1.1"});
+            var circle;
+            var x_init = 25;
+            var y_init = 25;
+            var spacing = 25;
+            for(var i=0;i<25;i++){
+                for(var j=0;j<25;j++){
+                    circle = makeSVG('circle',{cx:""+(x_init+spacing*i),
+                        cy:""+(y_init+j*spacing),r:"5",stroke:"black",fill:"red"})
+                    svg.appendChild(circle);
+                }
+            }
+
+            linkElement.append(svg);
+            var circles = linkElement.children().children().attr("display",true).data("show",false);
+            var hiya = document.getElementsByTagName('circle');
+            for(var i = 0;i<hiya.length;i++){
+                var h = angular.element(hiya[i]);
+                setInterval(function(q){
+                    return function(){
+                        q.data("show",!q.data("show"));
+                        if(q.data("show")){
+                            q.attr("display",true);
+                        } else{
+                            q.attr("display","none")
+                        }
+                    }
+                }(h),Math.random()*1000+100)
+            }
+        });
+
+        function Blinker(elem){
+            this.elem = elem;
+        }
+
+        Blinker.prototype = {
+            blink:function(){
+                console.log(this.elem);
+                var csharp = this.elem;
+                csharp.data("show",!csharp.data("show"));
+                if(csharp.data("show")){
+                    csharp.attr("display",true);
+                } else{
+                    csharp.attr("display","none")
+                }
+            }
+        }
+
+
+        function ComplexNumber(x,y){
+            this.x = x;
+            this.y = y;
+        }
+
+        ComplexNumber.prototype = {
+            plus:function(z){
+                return new ComplexNumber(z.x + this.x,z.y + this.y);
+            },
+            minus:function(z){
+                return new ComplexNumber(this.x - z.x,this.y - z.y);
+            },
+            times:function(z){
+                return new ComplexNumber(this.x*z.x-this.y*z.y,this.x*z.y+this.y*z.x);
+            },
+            scalar_times:function(s){
+                return new ComplexNumber(s*this.x,s*this.y);
+            },
+            conj:function(z){
+                return new ComplexNumber(this.x,-this.y);
+            },
+            bignorm:function(){
+                return this.x*this.x+this.y*this.y;
+            },
+            norm:function(){
+                return Math.sqrt(this.bignorm());
+            },
+            inverse:function(){
+                var reduce = this.bignorm();
+                return new ComplexNumber(this.x/reduce,-this.y/reduce);
+            },
+            unit:function(){
+                return this.scalar_times(1/this.norm());
+            },
+            power:function(n){
+                switch(n){
+                    case 0:
+                        return new ComplexNumber(1,0);
+                    case 1:
+                        return this;
+                    case 2:
+                        return this.times(this);
+                    case 3:
+                        var sq = this.times(this);
+                        return sq.times(this);
+                    case 4:
+                        var sq = this.times(this);
+                        return sq.times(sq);
+                }
+                return this.power(4).times(this.power(n-4));
+            }
+        }
+        var one = new ComplexNumber(1,0);
+        var i = new ComplexNumber(0,1);
+        console.log(one);
+        console.log(i);
+        var oneone = one.plus(i);
+        var oneminus = one.minus(i);
+        console.log(oneone);
+        console.log(oneminus);
+        console.log(oneone.times(oneminus));
+        console.log(oneone.times(oneone.inverse()));
+        console.log(oneminus.times(oneminus.inverse()));
+        console.log(oneone.unit());
+
+        function Mapper(l,m,n){
+            this.m = m;
+            this.n = n;
+            this.lambda = l;
+            this.same = (m == n);
+        }
+
+
+        Mapper.prototype = {
+            step:function(inc){
+                if(this.same){
+                    var raised = inc.power(n);
+                    return raised.plus(lambda.times(raised.inverse()));
+                } else {
+                    mth = inc.power(m);
+                    nth = inc.power(n);
+                    return mth.plus(lambda.times(nth.inverse()));
+                }
+            },
+            escape:function(inc,max){
+                var times = 0;
+                var temp = inc;
+                while(temp.quickMag()<9){
+                    temp = step(temp);
+                    times++;
+                    if(times==max)
+                        return max;
+                }
+                return times;
+            }
+        }
+    </script>
+</head>
+<body>
+<div ng:controller="LineController">
+    <fractalsvg:trace></fractalsvg:trace>
+</div>
+</body>
+</html>

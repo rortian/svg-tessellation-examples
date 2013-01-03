@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>p6</title>
+</head>
+<body>
+    <svg>
+        <defs>
+            <g id="tile">
+                <g id="triangle" stroke-width="1">
+                    <polygon points="450,250 250,250 350,76.7949" fill="rgb(0,110,125)" stroke="rgb(0,110,125)" />
+                    <polygon points="250,250 285,250 293.3013,225 267.5,219.6891" fill="rgb(126,101,101)" stroke="rgb(126,101,101)"/>
+                    <polygon points="450,250 350,76.7949 396.7221,218.8132 313.9482,221.5284 379.4427,155.9544 270.0739,227.7057" fill="rgb(61,17,123)" />
+                </g>
+                <use xlink:href="#triangle" transform="rotate(60,250,250)" />
+                <use xlink:href="#triangle" transform="rotate(120,250,250)" />
+                <use xlink:href="#triangle" transform="rotate(180,250,250)" />
+                <use xlink:href="#triangle" transform="rotate(240,250,250)" />
+                <use xlink:href="#triangle" transform="rotate(300,250,250)" />
+            </g>
+        </defs>
+        <use xlink:href="#tile" />
+    </svg>
+</body>
+</html>
