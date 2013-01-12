@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>koch6</title>
+</head>
+<body>
+<svg>
+    <defs>
+        <line x1="0" y1="900" x2="900" y2="900" stroke="black" stroke-width="729" id="koch0" />
+        <g id="koch1" transform="translate(0,600) scale(0.3333333)">
+            <use xlink:href="#koch0" />
+            <use xlink:href="#koch0" transform="translate(900) rotate(-60,0,900)" />
+            <use xlink:href="#koch0" transform="rotate(60,1800,900) translate(900)" />
+            <use xlink:href="#koch0" transform="translate(1800)" />
+        </g>
+        <g id="koch2" transform="translate(0,600) scale(0.3333333)">
+            <use xlink:href="#koch1" />
+            <use xlink:href="#koch1" transform="translate(900) rotate(-60,0,900)" />
+            <use xlink:href="#koch1" transform="rotate(60,1800,900) translate(900)" />
+            <use xlink:href="#koch1" transform="translate(1800)" />
+        </g>
+        <g id="koch3" transform="translate(0,600) scale(0.3333333)">
+            <use xlink:href="#koch2" />
+            <use xlink:href="#koch2" transform="translate(900) rotate(-60,0,900)" />
+            <use xlink:href="#koch2" transform="rotate(60,1800,900) translate(900)" />
+            <use xlink:href="#koch2" transform="translate(1800)" />
+        </g>
+        <g id="koch4" transform="translate(0,600) scale(0.3333333)">
+            <use xlink:href="#koch3" />
+            <use xlink:href="#koch3" transform="translate(900) rotate(-60,0,900)" />
+            <use xlink:href="#koch3" transform="rotate(60,1800,900) translate(900)" />
+            <use xlink:href="#koch3" transform="translate(1800)" />
+        </g>
+        <g id="koch5" transform="translate(0,600) scale(0.3333333)">
+            <use xlink:href="#koch4" />
+            <use xlink:href="#koch4" transform="translate(900) rotate(-60,0,900)" />
+            <use xlink:href="#koch4" transform="rotate(60,1800,900) translate(900)" />
+            <use xlink:href="#koch4" transform="translate(1800)" />
+        </g>
+        <g id="koch6" transform="scale(0.3333333)">
+            <use xlink:href="#koch5" />
+            <use xlink:href="#koch5" transform="translate(900) rotate(-60,0,900)" />
+            <use xlink:href="#koch5" transform="rotate(60,1800,900) translate(900)" />
+            <use xlink:href="#koch5" transform="translate(1800)" />
+        </g>
+    </defs>
+    <use xlink:href="#koch6" />
+    <use xlink:href="#koch6" transform="rotate(60,0,300) translate(900) rotate(180,0,300)" />
+    <use xlink:href="#koch6" transform="rotate(-60,900,300) translate(900) rotate(180,0,300)" />
+</svg>
+</body>
+</html>

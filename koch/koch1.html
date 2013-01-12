@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>koch1</title>
+</head>
+<body>
+<svg>
+    <defs>
+        <line x1="0" y1="900" x2="900" y2="900" stroke="black" stroke-width="3" id="koch0" />
+        <g id="koch1" transform="translate(0,600) scale(0.3333333)">
+            <use xlink:href="#koch0" />
+            <use xlink:href="#koch0" transform="translate(900) rotate(-60,0,900)" />
+            <use xlink:href="#koch0" transform="rotate(60,1800,900) translate(900)" />
+            <use xlink:href="#koch0" transform="translate(1800)" />
+        </g>
+    </defs>
+    <use xlink:href="#koch1" />
+</svg>
+</body>
+</html>
